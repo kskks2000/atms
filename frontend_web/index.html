@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise TMS - 통합 운송관리시스템</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-light: #1E293B;
+            --secondary: #0EA5E9;
+            --background: #F8FAFC;
+            --card-background: #ffffff;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-light: #94A3B8;
+            --border: #E2E8F0;
+            --border-focus: #0EA5E9;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --sidebar-width: 260px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined' !important;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ----------------------------------------------------
+           LOGIN MODE STYLE
+        ---------------------------------------------------- */
+        body.login-mode {
+            background-color: var(--background);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        body.login-mode #dashboardView {
+            display: none;
+        }
+
+        body.login-mode #loginCard {
+            display: block;
+        }
+
+        .login-card {
+            background-color: var(--card-background);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 440px;
+            padding: 40px 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            margin: 20px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .logo-box {
+            background-color: var(--primary);
+            color: var(--secondary);
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .logo-box span {
+            font-size: 36px;
+        }
+
+        .title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper span.prefix-icon {
+            position: absolute;
+            left: 16px;
+            color: var(--text-light);
+            pointer-events: none;
+            font-size: 20px !important;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            font-size: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background-color: white;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        .input-wrapper input.error {
+            border-color: var(--error);
+        }
+
+        .input-wrapper .suffix-btn {
+            position: absolute;
+            right: 16px;
+            color: var(--text-light);
+            cursor: pointer;
+            border: none;
+            background: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper .suffix-btn span {
+            font-size: 20px !important;
+        }
+
+        .error-msg {
+            color: var(--error);
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+            text-align: left;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 54px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        .login-btn:disabled {
+            background-color: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .footer-link a {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+
+        /* ----------------------------------------------------
+           DASHBOARD MODE STYLE
+        ---------------------------------------------------- */
+        body.dashboard-mode {
+            background-color: var(--background);
+            display: flex;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        body.dashboard-mode #loginCard {
+            display: none;
+        }
+
+        body.dashboard-mode #dashboardView {
+            display: flex;
+            width: 100%;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-brand .brand-logo {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary);
+            padding: 6px;
+            border-radius: 8px;
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 24px 16px;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            margin-bottom: 8px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .menu-link:hover, .menu-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .menu-link.active {
+            border-left: 4px solid var(--secondary);
+            border-radius: 0 8px 8px 0;
+            background-color: rgba(14, 165, 233, 0.1);
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 11px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Main Workspace Container */
+        .workspace {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 24px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Top Header */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-title h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-info {
+            background-color: rgba(15, 23, 42, 0.04);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary-light);
+            border: 1px solid var(--border);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: #F1F5F9;
+            color: var(--error);
+            border-color: var(--error);
+        }
+
+        /* Anomaly/Notification Alert Bar */
+        .alert-banner {
+            background-color: #FEF3C7;
+            border-left: 4px solid var(--warning);
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #92400E;
+        }
+
+        .alert-banner span {
+            color: var(--warning);
+        }
+
+        /* KPI Metirc Card Grid */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .metric-header span {
+            color: var(--text-light);
+        }
+
+        .metric-val {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .metric-trend {
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trend-up { color: var(--success); }
+        .trend-down { color: var(--error); }
+        .trend-flat { color: var(--text-secondary); }
+
+        /* Main Dashboard Board Grid (7:3 Layout) */
+        .board-grid {
+            display: grid;
+            grid-template-columns: 7fr 3fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .board-card {
+            background-color: white;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .board-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .board-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .board-body {
+            padding: 24px;
+        }
+
+        /* Order Table */
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .order-table th {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            background-color: #F8FAFC;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .order-table td {
+            font-size: 13px;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .order-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-received { background-color: #E0F2FE; color: #0369A1; }
+        .badge-planned { background-color: #FEF3C7; color: #B45309; }
+        .badge-transit { background-color: #E0F2FE; color: #0284C7; }
+        .badge-delivered { background-color: #D1FAE5; color: #047857; }
+
+        /* Vehicle tracking Mock Map Widget */
+        .mock-map {
+            width: 100%;
+            height: 220px;
+            background-color: #1E293B; /* Slate 800 */
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Vector Graphic Mock Map lines */
+        .map-vector {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .map-marker {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .marker-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        .marker-label {
+            background-color: var(--primary);
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Utilization Gauge / Progress Info */
+        .utilization-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .util-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .util-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .util-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .util-fill {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 4px;
+        }
+
+
+        /* ----------------------------------------------------
+           TOAST NOTIFICATION STYLE
+        ---------------------------------------------------- */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--primary);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+            min-width: 320px;
+            max-width: 90%;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background-color: var(--success);
+        }
+
+        .toast.error {
+            background-color: var(--error);
+        }
+    </style>
+</head>
+<body class="login-mode">
+
+    <!-- 1. LOGIN INTERFACE -->
+    <div class="login-card" id="loginCard">
+        <div class="header">
+            <div class="logo-box">
+                <span class="material-symbols-outlined">local_shipping</span>
+            </div>
+            <h1 class="title">K-CASTLE TMS</h1>
+            <p class="subtitle">통합 운송관리 시스템 로그인</p>
+        </div>
+
+        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+            <!-- Tenant ID -->
+            <div class="form-group">
+                <label class="label" for="tenantId">테넌트 ID (법인 코드)</label>
+                <div class="input-wrapper">
+                    <span class="material-symbols-outlined prefix-icon">business</span>
+                    <input type="text" id="tenantId" placeholder="예: GROUP_LGE, CORP_SEC" autocomplete="off">
+                </div>
+                <div class="error-msg" id="tenantError">테넌트 ID를 입력해 주세요.</div>
+            </div>
+
+            <!-- User ID -->
+            <div class="form-group">
+                <label class="label" for="userId">사용자 ID</label>
+                <div class="input-wrapper">
+                    <span class="material-symbols-outlined prefix-icon">person</span>
+                    <input type="text" id="userId" placeholder="아이디를 입력해 주세요." autocomplete="off">
+                </div>
+                <div class="error-msg" id="userError">사용자 ID를 입력해 주세요.</div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label class="label" for="password">비밀번호</label>
+                <div class="input-wrapper">
+                    <span class="material-symbols-outlined prefix-icon">lock</span>
+                    <input type="password" id="password" placeholder="••••••••">
+                    <button type="button" class="suffix-btn" onclick="togglePasswordVisibility()">
+                        <span class="material-symbols-outlined" id="eyeIcon">visibility_off</span>
+                    </button>
+                </div>
+                <div class="error-msg" id="passwordError">비밀번호를 입력해 주세요.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span class="btn-text" id="btnText">로그인</span>
+                <div class="spinner" id="btnSpinner"></div>
+            </button>
+        </form>
+
+        <div class="footer-link">
+            <a>계정 및 테넌트 분실 시 본사 헬프데스크 문의</a>
+        </div>
+    </div>
+
+
+    <!-- 2. ENTERPRISE TMS DASHBOARD VIEW (Visible after login) -->
+    <div id="dashboardView">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <span class="material-symbols-outlined brand-logo">local_shipping</span>
+                <h2>K-CASTLE TMS</h2>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item">
+                    <a class="menu-link active">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span>대시보드</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                        <span>운송 오더 관리</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link">
+                        <span class="material-symbols-outlined">route</span>
+                        <span>배차 계획 수립</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link">
+                        <span class="material-symbols-outlined">map</span>
+                        <span>실시간 차량 관제</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link">
+                        <span class="material-symbols-outlined">account_balance_wallet</span>
+                        <span>정산 및 마감</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span>시스템 설정</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p>Enterprise TMS v1.0</p>
+                <p>© 2026 K-Castle Group</p>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <!-- Header Bar -->
+            <header class="top-header">
+                <div class="header-title">
+                    <h2>대시보드</h2>
+                </div>
+                <div class="header-profile">
+                    <div class="user-info" id="userBadge">
+                        [GROUP_LGE] admin 님 (Planner)
+                    </div>
+                    <button class="logout-btn" onclick="handleLogout()">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span>로그아웃</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Alerts Banner -->
+            <div class="alert-banner">
+                <span class="material-symbols-outlined">warning</span>
+                <span><strong>[이상 대기 알림]</strong> 경기80아1234 (기흥 물류센터) 상차 하역 45분 경과 - 대기 지연 가산비 발생 우려.</span>
+            </div>
+
+            <!-- KPI Metric Widgets -->
+            <section class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>금일 총 오더수</span>
+                        <span class="material-symbols-outlined">assignment</span>
+                    </div>
+                    <div class="metric-val">154 건</div>
+                    <div class="metric-trend trend-up">
+                        <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
+                        <span>전일 대비 +12%</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>배차 대기 오더</span>
+                        <span class="material-symbols-outlined">pending_actions</span>
+                    </div>
+                    <div class="metric-val">12 건</div>
+                    <div class="metric-trend trend-down">
+                        <span class="material-symbols-outlined" style="font-size:16px;">warning</span>
+                        <span style="color:var(--error)">긴급 오더 2건 포함</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>운송 진행 차량</span>
+                        <span class="material-symbols-outlined">local_shipping</span>
+                    </div>
+                    <div class="metric-val">48 대</div>
+                    <div class="metric-trend trend-flat">
+                        <span>정상 45 / 지연 3</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span>금일 정산 예정액</span>
+                        <span class="material-symbols-outlined">payments</span>
+                    </div>
+                    <div class="metric-val">25.4M 원</div>
+                    <div class="metric-trend trend-up">
+                        <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
+                        <span>마감 확정 85% 완료</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Boards (7:3 Layout) -->
+            <section class="board-grid">
+                <!-- Left Board: Real-time Order Monitoring Board -->
+                <div class="board-card">
+                    <div class="board-header">
+                        <h3>실시간 운송 오더 현황판</h3>
+                        <span class="material-symbols-outlined" style="color:var(--text-light); cursor:pointer;">refresh</span>
+                    </div>
+                    <div class="board-body" style="padding: 0;">
+                        <table class="order-table">
+                            <thead>
+                                <tr>
+                                    <th>오더번호</th>
+                                    <th>화주사</th>
+                                    <th>출발 거점</th>
+                                    <th>도착 거점</th>
+                                    <th>진행 상태</th>
+                                    <th>배정 차량</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ORD-20260626-001</td>
+                                    <td>LG전자</td>
+                                    <td>평택 물류센터</td>
+                                    <td>구로 대리점</td>
+                                    <td><span class="badge badge-transit">운송중</span></td>
+                                    <td>경기80아1234</td>
+                                </tr>
+                                <tr>
+                                    <td>ORD-20260626-002</td>
+                                    <td>LG화학</td>
+                                    <td>여수 공장</td>
+                                    <td>인천 컨테이너부두</td>
+                                    <td><span class="badge badge-planned">배차완료</span></td>
+                                    <td>전남85바9876</td>
+                                </tr>
+                                <tr>
+                                    <td>ORD-20260626-003</td>
+                                    <td>LG디스플레이</td>
+                                    <td>파주 OLED센터</td>
+                                    <td>평택 스마트항</td>
+                                    <td><span class="badge badge-delivered">하역완료</span></td>
+                                    <td>서울70사5521</td>
+                                </tr>
+                                <tr>
+                                    <td>ORD-20260626-004</td>
+                                    <td>LG생활건강</td>
+                                    <td>청주 물류허브</td>
+                                    <td>강남 면세점</td>
+                                    <td><span class="badge badge-received">오더접수</span></td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>ORD-20260626-005</td>
+                                    <td>LG전자</td>
+                                    <td>창원 2공장</td>
+                                    <td>부산 신항</td>
+                                    <td><span class="badge badge-transit">운송중</span></td>
+                                    <td>경남90자2345</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Board: Tracking Map & Resource Info -->
+                <div class="board-card">
+                    <div class="board-header">
+                        <h3>실시간 차량 관제 (GPS)</h3>
+                    </div>
+                    <div class="board-body">
+                        <!-- Mock Map -->
+                        <div class="mock-map">
+                            <!-- Background Grid/lines vector mock representation -->
+                            <svg class="map-vector" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="10" y1="10" x2="90" y2="80" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+                                <line x1="20" y1="80" x2="80" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                                <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                            </svg>
+                            <!-- Animated Map markers representing vehicles -->
+                            <div class="map-marker" style="top: 25%; left: 30%;">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">경기80아1234 (평택)</div>
+                            </div>
+                            <div class="map-marker" style="top: 60%; left: 65%;">
+                                <div class="marker-dot" style="background-color: var(--warning); box-shadow: 0 0 10px var(--warning);"></div>
+                                <div class="marker-label" style="background-color: var(--warning); color: black;">경남90자2345 (창원)</div>
+                            </div>
+                            <span class="material-symbols-outlined" style="font-size:32px; z-index:1;">navigation</span>
+                            <span style="position:absolute; bottom:12px; font-size:11px; z-index:1;">NAVER MAP API 연동 영역</span>
+                        </div>
+
+                        <!-- Resource Load stats -->
+                        <div class="utilization-panel">
+                            <div class="util-stat">
+                                <div class="util-label">
+                                    <span>차량 평균 중량적재 효율</span>
+                                    <strong>82.4%</strong>
+                                </div>
+                                <div class="util-bar">
+                                    <div class="util-fill" style="width: 82.4%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="util-stat">
+                                <div class="util-label">
+                                    <span>차량 평균 부피적재 효율 (CBM)</span>
+                                    <strong>75.1%</strong>
+                                </div>
+                                <div class="util-bar">
+                                    <div class="util-fill" style="width: 75.1%; background-color: var(--warning);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <!-- 3. TOAST NOTIFICATION -->
+    <div id="toast" class="toast">
+        <span class="material-symbols-outlined" id="toastIcon">info</span>
+        <span id="toastText">알림 내용</span>
+    </div>
+
+    <script>
+        let obscurePassword = true;
+
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            obscurePassword = !obscurePassword;
+            if (obscurePassword) {
+                pwdInput.type = 'password';
+                eyeIcon.textContent = 'visibility_off';
+            } else {
+                pwdInput.type = 'text';
+                eyeIcon.textContent = 'visibility';
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toastText');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastText.textContent = message;
+            toast.className = `toast show ${type}`;
+
+            if (type === 'success') {
+                toastIcon.textContent = 'check_circle';
+            } else if (type === 'error') {
+                toastIcon.textContent = 'cancel';
+            } else {
+                toastIcon.textContent = 'info';
+            }
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function handleLogin() {
+            const tenantInput = document.getElementById('tenantId');
+            const userInput = document.getElementById('userId');
+            const passwordInput = document.getElementById('password');
+
+            const tenantError = document.getElementById('tenantError');
+            const userError = document.getElementById('userError');
+            const passwordError = document.getElementById('passwordError');
+
+            let isValid = true;
+
+            // Reset errors
+            tenantInput.classList.remove('error');
+            userInput.classList.remove('error');
+            passwordInput.classList.remove('error');
+            tenantError.style.display = 'none';
+            userError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            // Validate inputs
+            if (!tenantInput.value.trim()) {
+                tenantInput.classList.add('error');
+                tenantError.style.display = 'block';
+                isValid = false;
+            }
+            if (!userInput.value.trim()) {
+                userInput.classList.add('error');
+                userError.style.display = 'block';
+                isValid = false;
+            }
+            if (!passwordInput.value) {
+                passwordInput.classList.add('error');
+                passwordError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Show loading state
+            const loginBtn = document.getElementById('loginBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            loginBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnSpinner.style.display = 'block';
+
+            // Simulate API request delay (1.5s)
+            setTimeout(() => {
+                loginBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnSpinner.style.display = 'none';
+
+                const tenantId = tenantInput.value.trim();
+                const userId = userInput.value.trim();
+                const password = passwordInput.value;
+
+                if (userId === 'admin' && password === 'admin123') {
+                    showToast(`로그인 성공! [${tenantId}] ${userId}님 반갑습니다.`, 'success');
+                    
+                    // Update user info badge on dashboard
+                    document.getElementById('userBadge').textContent = `[${tenantId.toUpperCase()}] ${userId} 님 (Planner)`;
+
+                    // Switch screen style mode to Dashboard
+                    setTimeout(() => {
+                        document.body.className = 'dashboard-mode';
+                    }, 800);
+                } else {
+                    showToast('사용자 ID 또는 비밀번호가 올바르지 않습니다.', 'error');
+                }
+            }, 1500);
+        }
+
+        function handleLogout() {
+            // Reset fields
+            document.getElementById('tenantId').value = '';
+            document.getElementById('userId').value = '';
+            document.getElementById('password').value = '';
+            
+            // Switch back to login view
+            document.body.className = 'login-mode';
+            showToast('로그아웃되었습니다. 세션이 종료되었습니다.', 'success');
+        }
+    </script>
+</body>
+</html>
