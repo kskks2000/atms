@@ -688,6 +688,333 @@
         .toast.error {
             background-color: var(--error);
         }
+
+        /* ----------------------------------------------------
+           TAB SYSTEM & UTILS
+           ---------------------------------------------------- */
+        .tab-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Order Management Tab Style */
+        .filter-bar {
+            background-color: white;
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-input-wrapper span {
+            position: absolute;
+            left: 12px;
+            color: var(--text-light);
+            font-size: 20px !important;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 40px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            outline: none;
+            background-color: #F8FAFC;
+            transition: all 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--border-focus);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .filter-select {
+            padding: 10px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            outline: none;
+            background-color: white;
+            min-width: 130px;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            border-color: var(--border-focus);
+        }
+
+        .add-order-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.15s, opacity 0.15s;
+        }
+
+        .add-order-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .add-order-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Action buttons in list */
+        .action-btn-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #F1F5F9;
+            color: var(--primary);
+        }
+
+        .action-btn.btn-status-next {
+            color: var(--secondary);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .action-btn.btn-status-next:hover {
+            background-color: rgba(14, 165, 233, 0.08);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .action-btn.btn-delete {
+            color: var(--error);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .action-btn.btn-delete:hover {
+            background-color: rgba(239, 68, 68, 0.08);
+            border-color: var(--error);
+            color: var(--error);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-card {
+            background-color: var(--card-background);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .modal-header .close-btn {
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .modal-header .close-btn:hover {
+            color: var(--error);
+        }
+
+        .modal-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .modal-input, .modal-select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            outline: none;
+            background-color: #F8FAFC;
+            transition: all 0.2s;
+        }
+
+        .modal-input:focus, .modal-select:focus {
+            border-color: var(--border-focus);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            background-color: #F8FAFC;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 11px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: #F1F5F9;
+        }
+
+        /* Route Card Styles */
+        .route-card {
+            background-color: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 4px 6px rgba(15, 23, 42, 0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .route-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.05);
+        }
+
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .route-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .route-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .route-node {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .node-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+        }
+
+        .node-line {
+            width: 2px;
+            height: 12px;
+            background-color: var(--border);
+            margin-left: 3px;
+        }
     </style>
 </head>
 <body class="login-mode">
@@ -760,37 +1087,37 @@
             
             <ul class="sidebar-menu">
                 <li class="menu-item">
-                    <a class="menu-link active">
+                    <a class="menu-link active" onclick="switchTab('dashboard', event)">
                         <span class="material-symbols-outlined">dashboard</span>
                         <span>대시보드</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link">
+                    <a class="menu-link" onclick="switchTab('orders', event)">
                         <span class="material-symbols-outlined">receipt_long</span>
                         <span>운송 오더 관리</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link">
+                    <a class="menu-link" onclick="switchTab('planning', event)">
                         <span class="material-symbols-outlined">route</span>
                         <span>배차 계획 수립</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link">
+                    <a class="menu-link" onclick="showToast('실시간 차량 관제 상세 화면은 준비 중입니다.', 'info')">
                         <span class="material-symbols-outlined">map</span>
                         <span>실시간 차량 관제</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link">
+                    <a class="menu-link" onclick="showToast('정산 및 마감 기능은 준비 중입니다.', 'info')">
                         <span class="material-symbols-outlined">account_balance_wallet</span>
                         <span>정산 및 마감</span>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a class="menu-link">
+                    <a class="menu-link" onclick="showToast('시스템 설정 기능은 준비 중입니다.', 'info')">
                         <span class="material-symbols-outlined">settings</span>
                         <span>시스템 설정</span>
                     </a>
@@ -808,7 +1135,7 @@
             <!-- Header Bar -->
             <header class="top-header">
                 <div class="header-title">
-                    <h2>대시보드</h2>
+                    <h2 id="currentTabTitle">대시보드</h2>
                 </div>
                 <div class="header-profile">
                     <div class="user-info" id="userBadge">
@@ -821,69 +1148,173 @@
                 </div>
             </header>
 
-            <!-- Alerts Banner -->
-            <div class="alert-banner">
-                <span class="material-symbols-outlined">warning</span>
-                <span><strong>[이상 대기 알림]</strong> 경기80아1234 (기흥 물류센터) 상차 하역 45분 경과 - 대기 지연 가산비 발생 우려.</span>
+            <!-- TAB: Dashboard -->
+            <div id="tab-dashboard" class="tab-content">
+                <!-- Alerts Banner -->
+                <div class="alert-banner">
+                    <span class="material-symbols-outlined">warning</span>
+                    <span><strong>[이상 대기 알림]</strong> 경기80아1234 (기흥 물류센터) 상차 하역 45분 경과 - 대기 지연 가산비 발생 우려.</span>
+                </div>
+
+                <!-- KPI Metric Widgets -->
+                <section class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span>금일 총 오더수</span>
+                            <span class="material-symbols-outlined">assignment</span>
+                        </div>
+                        <div class="metric-val" id="kpiTotalOrders">0 건</div>
+                        <div class="metric-trend trend-up">
+                            <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
+                            <span>전일 대비 +12%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span>배차 대기 오더</span>
+                            <span class="material-symbols-outlined">pending_actions</span>
+                        </div>
+                        <div class="metric-val" id="kpiPendingOrders">0 건</div>
+                        <div class="metric-trend trend-down">
+                            <span class="material-symbols-outlined" style="font-size:16px;">warning</span>
+                            <span style="color:var(--error)" id="kpiUrgentText">대기 오더 실시간 확인</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span>운송 진행 차량</span>
+                            <span class="material-symbols-outlined">local_shipping</span>
+                        </div>
+                        <div class="metric-val" id="kpiTransitOrders">0 대</div>
+                        <div class="metric-trend trend-flat">
+                            <span id="kpiTransitStats">정상 운행 중</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span>금일 정산 예정액</span>
+                            <span class="material-symbols-outlined">payments</span>
+                        </div>
+                        <div class="metric-val" id="kpiSettlementAmount">0.0M 원</div>
+                        <div class="metric-trend trend-up">
+                            <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
+                            <span>마감 확정 실시간 연동</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Boards (7:3 Layout) -->
+                <section class="board-grid">
+                    <!-- Left Board: Real-time Order Monitoring Board -->
+                    <div class="board-card">
+                        <div class="board-header">
+                            <h3>실시간 운송 오더 현황판</h3>
+                            <span class="material-symbols-outlined" style="color:var(--text-light); cursor:pointer;" onclick="syncAllData()">refresh</span>
+                        </div>
+                        <div class="board-body" style="padding: 0;">
+                            <table class="order-table">
+                                <thead>
+                                    <tr>
+                                        <th>오더번호</th>
+                                        <th>화주사</th>
+                                        <th>출발 거점</th>
+                                        <th>도착 거점</th>
+                                        <th>진행 상태</th>
+                                        <th>배정 차량</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboardOrderTableBody">
+                                    <!-- Dynamic Render -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right Board: Tracking Map & Resource Info -->
+                    <div class="board-card">
+                        <div class="board-header">
+                            <h3>실시간 차량 관제 (GPS)</h3>
+                        </div>
+                        <div class="board-body">
+                            <!-- Mock Map -->
+                            <div class="mock-map">
+                                <!-- Background Grid/lines vector mock representation -->
+                                <svg class="map-vector" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <line x1="10" y1="10" x2="90" y2="80" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="20" y1="80" x2="80" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                                    <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                                </svg>
+                                <!-- Animated Map markers representing vehicles -->
+                                <div class="map-marker" style="top: 25%; left: 30%;">
+                                    <div class="marker-dot"></div>
+                                    <div class="marker-label">경기80아1234 (평택)</div>
+                                </div>
+                                <div class="map-marker" style="top: 60%; left: 65%;">
+                                    <div class="marker-dot" style="background-color: var(--warning); box-shadow: 0 0 10px var(--warning);"></div>
+                                    <div class="marker-label" style="background-color: var(--warning); color: black;">경남90자2345 (창원)</div>
+                                </div>
+                                <span class="material-symbols-outlined" style="font-size:32px; z-index:1;">navigation</span>
+                                <span style="position:absolute; bottom:12px; font-size:11px; z-index:1;">NAVER MAP API 연동 영역</span>
+                            </div>
+
+                            <!-- Resource Load stats -->
+                            <div class="utilization-panel">
+                                <div class="util-stat">
+                                    <div class="util-label">
+                                        <span>차량 평균 중량적재 효율</span>
+                                        <strong>82.4%</strong>
+                                    </div>
+                                    <div class="util-bar">
+                                        <div class="util-fill" style="width: 82.4%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="util-stat">
+                                    <div class="util-label">
+                                        <span>차량 평균 부피적재 효율 (CBM)</span>
+                                        <strong>75.1%</strong>
+                                    </div>
+                                    <div class="util-bar">
+                                        <div class="util-fill" style="width: 75.1%; background-color: var(--warning);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-            <!-- KPI Metric Widgets -->
-            <section class="metric-grid">
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>금일 총 오더수</span>
-                        <span class="material-symbols-outlined">assignment</span>
+            <!-- TAB: Order Management -->
+            <div id="tab-orders" class="tab-content" style="display: none;">
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <div class="search-input-wrapper">
+                            <span class="material-symbols-outlined">search</span>
+                            <input type="text" id="orderSearchInput" class="search-input" placeholder="화주사 또는 거점명 검색..." oninput="filterOrders()">
+                        </div>
+                        <select id="statusFilter" class="filter-select" onchange="filterOrders()">
+                            <option value="all">전체 상태</option>
+                            <option value="received">오더접수</option>
+                            <option value="planned">배차완료</option>
+                            <option value="transit">운송중</option>
+                            <option value="delivered">하역완료</option>
+                        </select>
                     </div>
-                    <div class="metric-val">154 건</div>
-                    <div class="metric-trend trend-up">
-                        <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
-                        <span>전일 대비 +12%</span>
-                    </div>
+                    <button class="add-order-btn" onclick="openOrderModal()">
+                        <span class="material-symbols-outlined">add</span>
+                        <span>신규 오더 등록</span>
+                    </button>
                 </div>
 
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>배차 대기 오더</span>
-                        <span class="material-symbols-outlined">pending_actions</span>
-                    </div>
-                    <div class="metric-val">12 건</div>
-                    <div class="metric-trend trend-down">
-                        <span class="material-symbols-outlined" style="font-size:16px;">warning</span>
-                        <span style="color:var(--error)">긴급 오더 2건 포함</span>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>운송 진행 차량</span>
-                        <span class="material-symbols-outlined">local_shipping</span>
-                    </div>
-                    <div class="metric-val">48 대</div>
-                    <div class="metric-trend trend-flat">
-                        <span>정상 45 / 지연 3</span>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-header">
-                        <span>금일 정산 예정액</span>
-                        <span class="material-symbols-outlined">payments</span>
-                    </div>
-                    <div class="metric-val">25.4M 원</div>
-                    <div class="metric-trend trend-up">
-                        <span class="material-symbols-outlined" style="font-size:16px;">trending_up</span>
-                        <span>마감 확정 85% 완료</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Boards (7:3 Layout) -->
-            <section class="board-grid">
-                <!-- Left Board: Real-time Order Monitoring Board -->
+                <!-- Orders Board -->
                 <div class="board-card">
                     <div class="board-header">
-                        <h3>실시간 운송 오더 현황판</h3>
-                        <span class="material-symbols-outlined" style="color:var(--text-light); cursor:pointer;">refresh</span>
+                        <h3>운송 오더 목록 (전체 데이터)</h3>
+                        <span class="material-symbols-outlined" style="color:var(--text-light); cursor:pointer;" onclick="filterOrders()">refresh</span>
                     </div>
                     <div class="board-body" style="padding: 0;">
                         <table class="order-table">
@@ -893,111 +1324,145 @@
                                     <th>화주사</th>
                                     <th>출발 거점</th>
                                     <th>도착 거점</th>
+                                    <th>희망 배송일시</th>
                                     <th>진행 상태</th>
                                     <th>배정 차량</th>
+                                    <th>액션</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ORD-20260626-001</td>
-                                    <td>LG전자</td>
-                                    <td>평택 물류센터</td>
-                                    <td>구로 대리점</td>
-                                    <td><span class="badge badge-transit">운송중</span></td>
-                                    <td>경기80아1234</td>
-                                </tr>
-                                <tr>
-                                    <td>ORD-20260626-002</td>
-                                    <td>LG화학</td>
-                                    <td>여수 공장</td>
-                                    <td>인천 컨테이너부두</td>
-                                    <td><span class="badge badge-planned">배차완료</span></td>
-                                    <td>전남85바9876</td>
-                                </tr>
-                                <tr>
-                                    <td>ORD-20260626-003</td>
-                                    <td>LG디스플레이</td>
-                                    <td>파주 OLED센터</td>
-                                    <td>평택 스마트항</td>
-                                    <td><span class="badge badge-delivered">하역완료</span></td>
-                                    <td>서울70사5521</td>
-                                </tr>
-                                <tr>
-                                    <td>ORD-20260626-004</td>
-                                    <td>LG생활건강</td>
-                                    <td>청주 물류허브</td>
-                                    <td>강남 면세점</td>
-                                    <td><span class="badge badge-received">오더접수</span></td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>ORD-20260626-005</td>
-                                    <td>LG전자</td>
-                                    <td>창원 2공장</td>
-                                    <td>부산 신항</td>
-                                    <td><span class="badge badge-transit">운송중</span></td>
-                                    <td>경남90자2345</td>
-                                </tr>
+                            <tbody id="managementOrderTableBody">
+                                <!-- Dynamic Render -->
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right Board: Tracking Map & Resource Info -->
-                <div class="board-card">
-                    <div class="board-header">
-                        <h3>실시간 차량 관제 (GPS)</h3>
-                    </div>
-                    <div class="board-body">
-                        <!-- Mock Map -->
-                        <div class="mock-map">
-                            <!-- Background Grid/lines vector mock representation -->
-                            <svg class="map-vector" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="10" y1="10" x2="90" y2="80" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="2,2"/>
-                                <line x1="20" y1="80" x2="80" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                                <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
-                            </svg>
-                            <!-- Animated Map markers representing vehicles -->
-                            <div class="map-marker" style="top: 25%; left: 30%;">
-                                <div class="marker-dot"></div>
-                                <div class="marker-label">경기80아1234 (평택)</div>
-                            </div>
-                            <div class="map-marker" style="top: 60%; left: 65%;">
-                                <div class="marker-dot" style="background-color: var(--warning); box-shadow: 0 0 10px var(--warning);"></div>
-                                <div class="marker-label" style="background-color: var(--warning); color: black;">경남90자2345 (창원)</div>
-                            </div>
-                            <span class="material-symbols-outlined" style="font-size:32px; z-index:1;">navigation</span>
-                            <span style="position:absolute; bottom:12px; font-size:11px; z-index:1;">NAVER MAP API 연동 영역</span>
+            <!-- TAB: Planning -->
+            <div id="tab-planning" class="tab-content" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <p class="subtitle" style="margin-top:0;">미배차 오더를 통합하여 효율적인 노선(Consolidation)을 계획하고 가용 차량을 배정합니다.</p>
+                    <button class="add-order-btn" style="background-color: var(--primary); display: flex; align-items: center; gap: 8px;" onclick="runSmartAllocation(this)">
+                        <span class="material-symbols-outlined" id="aiBtnIcon">psychology</span>
+                        <span id="aiBtnText">스마트 자동 배차 (AI 추천)</span>
+                        <div class="spinner" id="aiBtnSpinner" style="width:18px; height:18px; border-width:2px; display:none;"></div>
+                    </button>
+                </div>
+
+                <div class="board-grid" style="grid-template-columns: 6.5fr 3.5fr; gap: 20px;">
+                    <!-- Left: Unassigned Orders -->
+                    <div class="board-card">
+                        <div class="board-header">
+                            <h3>1단계: 미배차 오더 선택</h3>
+                            <span class="badge badge-received" id="unassignedCountBadge">0건 대기 중</span>
                         </div>
+                        <div class="board-body" style="padding: 0;">
+                            <table class="order-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 45px; text-align: center;"><input type="checkbox" id="checkAllOrders" onchange="toggleSelectAllOrders(this)"></th>
+                                        <th>오더번호</th>
+                                        <th>화주사</th>
+                                        <th>출발 거점</th>
+                                        <th>도착 거점</th>
+                                        <th>희망일시</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="planningOrderTableBody">
+                                    <!-- Dynamic Render -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                        <!-- Resource Load stats -->
-                        <div class="utilization-panel">
-                            <div class="util-stat">
-                                <div class="util-label">
-                                    <span>차량 평균 중량적재 효율</span>
-                                    <strong>82.4%</strong>
-                                </div>
-                                <div class="util-bar">
-                                    <div class="util-fill" style="width: 82.4%;"></div>
+                    <!-- Right: Consolidation & Resource Assignment -->
+                    <div class="board-card" style="height: fit-content;">
+                        <div class="board-header">
+                            <h3>2단계: 노선 및 차량 배정</h3>
+                        </div>
+                        <div class="board-body" style="display:flex; flex-direction:column; gap: 18px;">
+                            <!-- Selected Orders Info -->
+                            <div>
+                                <label class="label" style="font-weight:700;">선택된 오더 목록</label>
+                                <div id="selectedOrdersSummary" style="background-color:#F8FAFC; border:1px dashed var(--border); padding: 14px; border-radius: 8px; font-size: 13px; color:var(--text-secondary); min-height: 60px; line-height: 1.5;">
+                                    체크박스를 선택하여 오더를 지정해 주세요.
                                 </div>
                             </div>
 
-                            <div class="util-stat">
-                                <div class="util-label">
-                                    <span>차량 평균 부피적재 효율 (CBM)</span>
-                                    <strong>75.1%</strong>
-                                </div>
-                                <div class="util-bar">
-                                    <div class="util-fill" style="width: 75.1%; background-color: var(--warning);"></div>
-                                </div>
+                            <!-- Vehicle & Driver Selection -->
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="label" for="planningVehicleSelect">배정 가능 차량 풀 (가용 자원)</label>
+                                <select id="planningVehicleSelect" class="modal-select" style="background-color: white;">
+                                    <!-- Dynamic Vehicle list -->
+                                </select>
                             </div>
+
+                            <!-- Dispatch button -->
+                            <button class="login-btn" id="confirmDispatchBtn" onclick="confirmManualDispatch()" style="margin-top: 16px; height: 48px;" disabled>
+                                배차 확정 및 지시 전송
+                            </button>
                         </div>
                     </div>
                 </div>
-            </section>
+
+                <!-- Consolidated Route View (AI 추천 결과나 현재 편성된 노선을 보기 좋게 보여줌) -->
+                <div class="board-card">
+                    <div class="board-header">
+                        <h3>스마트 최적 노선 추천 현황 (Consolidation Routes)</h3>
+                    </div>
+                    <div class="board-body" id="routeListView" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; background-color: #F8FAFC; min-height: 100px; border-radius: 12px; padding: 20px;">
+                        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-light); font-size:13px; width: 100%;">
+                            AI 스마트 배차를 실행하시면 인접 배송처를 자동으로 묶어(Consolidation) 최적 노선 및 차량을 추천합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
+
+    <!-- Order Registration Modal -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>신규 운송 오더 수동 등록</h3>
+                <span class="material-symbols-outlined close-btn" onclick="closeOrderModal()">close</span>
+            </div>
+            <form id="orderForm" onsubmit="event.preventDefault(); registerOrder();">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="label" for="modalCustomer">화주사</label>
+                        <select id="modalCustomer" class="modal-select">
+                            <option value="LG전자">LG전자</option>
+                            <option value="LG화학">LG화학</option>
+                            <option value="LG디스플레이">LG디스플레이</option>
+                            <option value="LG생활건강">LG생활건강</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="modalOrigin">출발 거점</label>
+                        <input type="text" id="modalOrigin" class="modal-input" placeholder="예: 평택 물류센터" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="modalDestination">도착 거점</label>
+                        <input type="text" id="modalDestination" class="modal-input" placeholder="예: 구로 대리점" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="modalDate">희망 배송일시</label>
+                        <input type="datetime-local" id="modalDate" class="modal-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="label" for="modalVehicle">배정 차량 (선택)</label>
+                        <input type="text" id="modalVehicle" class="modal-input" placeholder="예: 경기80아1234 (미배정 시 비워둠)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeOrderModal()">취소</button>
+                    <button type="submit" class="btn-primary">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- 3. TOAST NOTIFICATION -->
     <div id="toast" class="toast">
@@ -1007,6 +1472,36 @@
 
     <script>
         let obscurePassword = true;
+
+        // Mock Order Database
+        let ordersData = [
+            { id: 'ORD-20260626-001', customer: 'LG전자', origin: '평택 물류센터', destination: '구로 대리점', status: 'transit', vehicle: '경기80아1234', date: '2026-06-30T14:00' },
+            { id: 'ORD-20260626-002', customer: 'LG화학', origin: '여수 공장', destination: '인천 컨테이너부두', status: 'planned', vehicle: '전남85바9876', date: '2026-06-30T15:30' },
+            { id: 'ORD-20260626-003', customer: 'LG디스플레이', origin: '파주 OLED센터', destination: '평택 스마트항', status: 'delivered', vehicle: '서울70사5521', date: '2026-06-30T11:00' },
+            { id: 'ORD-20260626-004', customer: 'LG생활건강', origin: '청주 물류허브', destination: '강남 면세점', status: 'received', vehicle: '-', date: '2026-06-30T18:00' },
+            { id: 'ORD-20260626-005', customer: 'LG전자', origin: '창원 2공장', destination: '부산 신항', status: 'transit', vehicle: '경남90자2345', date: '2026-06-30T16:00' }
+        ];
+
+        // Mock Vehicles Database
+        let vehiclesPool = [
+            { id: '경기80아1234', type: '1톤 탑차', driver: '김운전 (010-1234-5678)' },
+            { id: '전남85바9876', type: '5톤 냉장', driver: '이배송 (010-9876-5432)' },
+            { id: '서울70사5521', type: '11톤 윙바디', driver: '박기사 (010-5521-1122)' },
+            { id: '경남90자2345', type: '5톤 카고', driver: '최운송 (010-2345-9090)' },
+            { id: '인천31러4882', type: '1톤 냉동', driver: '정신속 (010-4882-3131)' }
+        ];
+
+        // Selected orders in planning page
+        let selectedOrdersForPlanning = [];
+        let smartRoutesData = []; // AI 추천 임시 노선 데이터
+
+        // Status Translation Map
+        const statusMap = {
+            received: { text: '오더접수', class: 'badge-received' },
+            planned: { text: '배차완료', class: 'badge-planned' },
+            transit: { text: '운송중', class: 'badge-transit' },
+            delivered: { text: '하역완료', class: 'badge-delivered' }
+        };
 
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('password');
@@ -1105,6 +1600,9 @@
                     // Update user info badge on dashboard
                     document.getElementById('userBadge').textContent = `[${tenantId.toUpperCase()}] ${userId} 님 (Planner)`;
 
+                    // Render dynamic content
+                    syncAllData();
+
                     // Switch screen style mode to Dashboard
                     setTimeout(() => {
                         document.body.className = 'dashboard-mode';
@@ -1125,6 +1623,575 @@
             document.body.className = 'login-mode';
             showToast('로그아웃되었습니다. 세션이 종료되었습니다.', 'success');
         }
+
+        /* ----------------------------------------------------
+           TAB SYSTEM LOGIC
+           ---------------------------------------------------- */
+        function switchTab(tabName, event) {
+            if (event) event.preventDefault();
+
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            // Show current tab content
+            const activeTab = document.getElementById(`tab-${tabName}`);
+            if (activeTab) {
+                activeTab.style.display = 'flex';
+            }
+
+            // Update sidebar active styling
+            document.querySelectorAll('.sidebar-menu .menu-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Set current link active
+            if (event) {
+                event.currentTarget.classList.add('active');
+            } else {
+                // Fallback search
+                document.querySelectorAll('.sidebar-menu .menu-link').forEach(link => {
+                    if (link.innerHTML.includes(tabName === 'dashboard' ? 'dashboard' : (tabName === 'orders' ? 'receipt_long' : 'route'))) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Set header title
+            const tabTitleMap = {
+                dashboard: '대시보드',
+                orders: '운송 오더 관리',
+                planning: '배차 계획 수립'
+            };
+            document.getElementById('currentTabTitle').textContent = tabTitleMap[tabName] || '대시보드';
+
+            // Sync data
+            syncAllData();
+        }
+
+        /* ----------------------------------------------------
+           DATA BINDING & SYNC LOGIC
+           ---------------------------------------------------- */
+        function syncAllData() {
+            renderDashboardOrders();
+            renderManagementOrders();
+            renderPlanningTab();
+            updateKPIs();
+        }
+
+        function updateKPIs() {
+            const total = ordersData.length;
+            const pending = ordersData.filter(o => o.status === 'received').length;
+            const transit = ordersData.filter(o => o.status === 'transit').length;
+            const planned = ordersData.filter(o => o.status === 'planned').length;
+            
+            // Settlement amount mock: 1 order = 150,000 KRW (0.15M Won) average
+            const settlement = (total * 0.15 + 23.4).toFixed(1);
+
+            document.getElementById('kpiTotalOrders').textContent = `${total} 건`;
+            document.getElementById('kpiPendingOrders').textContent = `${pending} 건`;
+            document.getElementById('kpiTransitOrders').textContent = `${transit + planned} 대`;
+            document.getElementById('kpiSettlementAmount').textContent = `${settlement}M 원`;
+
+            // Alert warning update if high wait count
+            const kpiUrgentText = document.getElementById('kpiUrgentText');
+            if (pending > 0) {
+                kpiUrgentText.textContent = `긴급 대기 ${pending}건 존재`;
+                kpiUrgentText.style.color = 'var(--error)';
+            } else {
+                kpiUrgentText.textContent = `대기 오더 없음`;
+                kpiUrgentText.style.color = 'var(--success)';
+            }
+            
+            document.getElementById('kpiTransitStats').textContent = `정상 ${transit} / 배차완료 ${planned}`;
+        }
+
+        function renderDashboardOrders() {
+            const tableBody = document.getElementById('dashboardOrderTableBody');
+            if (!tableBody) return;
+
+            // Show latest 5 items on dashboard
+            const recentOrders = ordersData.slice(-5).reverse();
+
+            if (recentOrders.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-light); padding: 24px;">등록된 운송 오더가 없습니다.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = recentOrders.map(order => {
+                const badge = statusMap[order.status] || { text: '미정', class: 'badge-received' };
+                return `
+                    <tr>
+                        <td style="font-weight:600; color:var(--secondary);">${order.id}</td>
+                        <td>${order.customer}</td>
+                        <td>${order.origin}</td>
+                        <td>${order.destination}</td>
+                        <td><span class="badge ${badge.class}">${badge.text}</span></td>
+                        <td>${order.vehicle}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function renderManagementOrders(filteredData = null) {
+            const tableBody = document.getElementById('managementOrderTableBody');
+            if (!tableBody) return;
+
+            const targetData = filteredData || ordersData;
+
+            if (targetData.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--text-light); padding: 40px;">조건에 일치하는 운송 오더가 없습니다.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = targetData.slice().reverse().map(order => {
+                const badge = statusMap[order.status] || { text: '미정', class: 'badge-received' };
+                const formattedDate = order.date.replace('T', ' ');
+                
+                // Status progression helper
+                let nextStatusBtn = '';
+                if (order.status === 'received') {
+                    nextStatusBtn = `<button class="action-btn btn-status-next" onclick="advanceStatus('${order.id}', 'planned')" title="배차 처리"><span class="material-symbols-outlined" style="font-size:18px;">local_shipping</span></button>`;
+                } else if (order.status === 'planned') {
+                    nextStatusBtn = `<button class="action-btn btn-status-next" onclick="advanceStatus('${order.id}', 'transit')" title="운송 출발"><span class="material-symbols-outlined" style="font-size:18px;">navigation</span></button>`;
+                } else if (order.status === 'transit') {
+                    nextStatusBtn = `<button class="action-btn btn-status-next" onclick="advanceStatus('${order.id}', 'delivered')" title="하역 완료"><span class="material-symbols-outlined" style="font-size:18px;">check_circle</span></button>`;
+                }
+
+                return `
+                    <tr>
+                        <td style="font-weight:600; color:var(--secondary);">${order.id}</td>
+                        <td style="font-weight:500;">${order.customer}</td>
+                        <td>${order.origin}</td>
+                        <td>${order.destination}</td>
+                        <td style="color:var(--text-secondary); font-size:12px;">${formattedDate}</td>
+                        <td><span class="badge ${badge.class}">${badge.text}</span></td>
+                        <td style="font-weight:500;">${order.vehicle}</td>
+                        <td>
+                            <div class="action-btn-group">
+                                ${nextStatusBtn}
+                                <button class="action-btn btn-delete" onclick="deleteOrder('${order.id}')" title="오더 취소"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterOrders() {
+            const query = document.getElementById('orderSearchInput').value.toLowerCase().trim();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filtered = ordersData.filter(order => {
+                const matchesSearch = 
+                    order.customer.toLowerCase().includes(query) || 
+                    order.origin.toLowerCase().includes(query) || 
+                    order.destination.toLowerCase().includes(query) ||
+                    order.id.toLowerCase().includes(query);
+                
+                const matchesStatus = (statusFilter === 'all') || (order.status === statusFilter);
+
+                return matchesSearch && matchesStatus;
+            });
+
+            renderManagementOrders(filtered);
+        }
+
+        /* ----------------------------------------------------
+           PLANNING SYSTEM LOGIC
+           ---------------------------------------------------- */
+        function renderPlanningTab() {
+            const tableBody = document.getElementById('planningOrderTableBody');
+            const unassignedBadge = document.getElementById('unassignedCountBadge');
+            const vehicleSelect = document.getElementById('planningVehicleSelect');
+            if (!tableBody || !vehicleSelect) return;
+
+            // Get received (unassigned) orders
+            const unassignedOrders = ordersData.filter(o => o.status === 'received');
+            unassignedBadge.textContent = `${unassignedOrders.length}건 대기 중`;
+
+            // Reset selection state
+            selectedOrdersForPlanning = [];
+            document.getElementById('checkAllOrders').checked = false;
+            updateSelectedOrdersSummary();
+
+            if (unassignedOrders.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-light); padding: 30px;">미배차 대기 오더가 없습니다.</td></tr>`;
+            } else {
+                tableBody.innerHTML = unassignedOrders.slice().reverse().map(order => {
+                    const formattedDate = order.date.replace('T', ' ');
+                    return `
+                        <tr>
+                            <td style="text-align: center;"><input type="checkbox" value="${order.id}" class="planning-order-checkbox" onchange="handleOrderCheckboxChange()"></td>
+                            <td style="font-weight:600; color:var(--secondary);">${order.id}</td>
+                            <td style="font-weight:500;">${order.customer}</td>
+                            <td>${order.origin}</td>
+                            <td>${order.destination}</td>
+                            <td style="color:var(--text-secondary); font-size:12px;">${formattedDate}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Populate vehicle selector
+            // Exclude vehicles currently assigned to 'planned' or 'transit' status orders
+            const assignedVehicles = ordersData.filter(o => o.status === 'planned' || o.status === 'transit').map(o => o.vehicle);
+            const availableVehicles = vehiclesPool.filter(v => !assignedVehicles.includes(v.id));
+
+            if (availableVehicles.length === 0) {
+                vehicleSelect.innerHTML = `<option value="">배정 가능한 가용 차량 없음</option>`;
+            } else {
+                vehicleSelect.innerHTML = availableVehicles.map(v => `
+                    <option value="${v.id}">${v.id} (${v.type} - ${v.driver.split(' ')[0]})</option>
+                `).join('');
+            }
+        }
+
+        function toggleSelectAllOrders(masterCheckbox) {
+            const checkboxes = document.querySelectorAll('.planning-order-checkbox');
+            checkboxes.forEach(cb => {
+                cb.checked = masterCheckbox.checked;
+            });
+            handleOrderCheckboxChange();
+        }
+
+        function handleOrderCheckboxChange() {
+            selectedOrdersForPlanning = [];
+            const checkboxes = document.querySelectorAll('.planning-order-checkbox');
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    selectedOrdersForPlanning.push(cb.value);
+                }
+            });
+            updateSelectedOrdersSummary();
+        }
+
+        function updateSelectedOrdersSummary() {
+            const summaryDiv = document.getElementById('selectedOrdersSummary');
+            const confirmBtn = document.getElementById('confirmDispatchBtn');
+            if (!summaryDiv || !confirmBtn) return;
+
+            if (selectedOrdersForPlanning.length === 0) {
+                summaryDiv.innerHTML = '체크박스를 선택하여 오더를 지정해 주세요.';
+                confirmBtn.disabled = true;
+                return;
+            }
+
+            const orders = ordersData.filter(o => selectedOrdersForPlanning.includes(o.id));
+            summaryDiv.innerHTML = orders.map(o => `
+                <div style="margin-bottom: 6px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f1f5f9; padding-bottom:4px;">
+                    <strong>${o.id}</strong>
+                    <span style="font-size:12px;">${o.origin} ➔ ${o.destination} (${o.customer})</span>
+                </div>
+            `).join('');
+
+            confirmBtn.disabled = false;
+        }
+
+        function confirmManualDispatch() {
+            const vehicleSelect = document.getElementById('planningVehicleSelect');
+            const vehicleId = vehicleSelect.value;
+
+            if (!vehicleId) {
+                showToast('배정할 차량을 선택해 주세요.', 'error');
+                return;
+            }
+
+            if (selectedOrdersForPlanning.length === 0) {
+                showToast('배차할 오더를 선택해 주세요.', 'error');
+                return;
+            }
+
+            // Assign vehicle & change status
+            selectedOrdersForPlanning.forEach(orderId => {
+                const order = ordersData.find(o => o.id === orderId);
+                if (order) {
+                    order.status = 'planned';
+                    order.vehicle = vehicleId;
+                }
+            });
+
+            showToast(`${selectedOrdersForPlanning.length}건의 오더에 차량 [${vehicleId}] 배차가 확정되었습니다.`, 'success');
+            
+            // Re-render
+            syncAllData();
+            
+            // Clean AI routing view
+            document.getElementById('routeListView').innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-light); font-size:13px; width:100%;">
+                    AI 스마트 배차를 실행하시면 인접 배송처를 자동으로 묶어(Consolidation) 최적 노선 및 차량을 추천합니다.
+                </div>
+            `;
+        }
+
+        function runSmartAllocation(btn) {
+            const unassignedOrders = ordersData.filter(o => o.status === 'received');
+            if (unassignedOrders.length === 0) {
+                showToast('배차 대기 중인 오더가 없습니다.', 'error');
+                return;
+            }
+
+            const assignedVehicles = ordersData.filter(o => o.status === 'planned' || o.status === 'transit').map(o => o.vehicle);
+            const availableVehicles = vehiclesPool.filter(v => !assignedVehicles.includes(v.id));
+
+            if (availableVehicles.length === 0) {
+                showToast('가용 가능한 빈 차량이 없습니다.', 'error');
+                return;
+            }
+
+            const aiBtnText = document.getElementById('aiBtnText');
+            const aiBtnIcon = document.getElementById('aiBtnIcon');
+            const aiBtnSpinner = document.getElementById('aiBtnSpinner');
+
+            // Show AI thinking spin effect
+            btn.disabled = true;
+            aiBtnText.textContent = '최적 통합 노선 분석 중...';
+            aiBtnIcon.style.display = 'none';
+            aiBtnSpinner.style.display = 'block';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                aiBtnText.textContent = '스마트 자동 배차 (AI 추천)';
+                aiBtnIcon.style.display = 'block';
+                aiBtnSpinner.style.display = 'none';
+
+                const routeListView = document.getElementById('routeListView');
+                if (!routeListView) return;
+
+                // Smart Consolidation Routing Sim
+                smartRoutesData = [];
+                let orderIdx = 0;
+
+                for (let vIdx = 0; vIdx < availableVehicles.length && orderIdx < unassignedOrders.length; vIdx++) {
+                    const vehicle = availableVehicles[vIdx];
+                    const routeOrders = [];
+                    
+                    // Assign first order
+                    routeOrders.push(unassignedOrders[orderIdx++]);
+                    
+                    // Try to consolidate adjacent orders (same customer, or same origin)
+                    if (orderIdx < unassignedOrders.length) {
+                        const currentOrder = unassignedOrders[orderIdx - 1];
+                        const nextOrder = unassignedOrders[orderIdx];
+                        
+                        if (currentOrder.customer === nextOrder.customer || currentOrder.origin === nextOrder.origin) {
+                            routeOrders.push(unassignedOrders[orderIdx++]);
+                        }
+                    }
+
+                    const routeId = `RT-${new Date().toISOString().slice(2,10).replace(/-/g,'')}-${vIdx+1}`;
+                    smartRoutesData.push({
+                        id: routeId,
+                        vehicle: vehicle.id,
+                        vehicleType: vehicle.type,
+                        driver: vehicle.driver.split(' ')[0],
+                        orders: routeOrders
+                    });
+                }
+
+                // Render Route Cards
+                routeListView.innerHTML = smartRoutesData.map((route, idx) => {
+                    const nodeMarkup = route.orders.map((o, oIdx) => `
+                        <div class="route-node" style="margin: 4px 0;">
+                            <div class="node-dot"></div>
+                            <span style="font-weight:600; font-size:12px;">[${o.customer}] ${o.origin} ➔ ${o.destination}</span>
+                        </div>
+                        ${oIdx < route.orders.length - 1 ? '<div class="node-line"></div>' : ''}
+                    `).join('');
+
+                    return `
+                        <div class="route-card">
+                            <div class="route-header">
+                                <div class="route-title">
+                                    <span class="material-symbols-outlined" style="color:var(--secondary);">alt_route</span>
+                                    <span style="font-size:13px; font-weight:700;">추천 통합 노선 ${route.id}</span>
+                                </div>
+                                <span class="badge badge-transit" style="font-size:9px; padding: 2px 6px;">Consolidated</span>
+                            </div>
+                            <div class="route-body">
+                                <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:12px;">
+                                    <span><strong>배정 차량:</strong> ${route.vehicle}</span>
+                                    <span style="color:var(--text-secondary);">기사: ${route.driver}</span>
+                                </div>
+                                <div style="background-color:#F8FAFC; padding: 10px; border-radius: 8px; display:flex; flex-direction:column; gap:2px; border:1px solid #e2e8f0;">
+                                    ${nodeMarkup}
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="applySmartRoute(${idx})" style="padding: 10px; font-size:12px; border-radius:8px; margin-top:8px; width:100%; height:auto;">
+                                추천 배차 적용
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                showToast(`스마트 노선 분석 완료! ${smartRoutesData.length}개의 추천 배차 노선이 생성되었습니다.`, 'success');
+            }, 1200);
+        }
+
+        function applySmartRoute(routeIdx) {
+            const route = smartRoutesData[routeIdx];
+            if (!route) return;
+
+            // Apply smart route to original database
+            route.orders.forEach(o => {
+                const order = ordersData.find(orgO => orgO.id === o.id);
+                if (order) {
+                    order.status = 'planned';
+                    order.vehicle = route.vehicle;
+                }
+            });
+
+            showToast(`노선 ${route.id} 배차가 최종 확정되었습니다.`, 'success');
+
+            // Remove applied route from memory
+            smartRoutesData.splice(routeIdx, 1);
+            
+            // Sync all
+            syncAllData();
+
+            // Re-render remaining routes
+            const routeListView = document.getElementById('routeListView');
+            if (smartRoutesData.length === 0) {
+                routeListView.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-light); font-size:13px; width:100%;">
+                        모든 추천 노선의 배차 검토 및 적용이 완료되었습니다.
+                    </div>
+                `;
+            } else {
+                routeListView.innerHTML = smartRoutesData.map((r, idx) => {
+                    const nodeMarkup = r.orders.map((o, oIdx) => `
+                        <div class="route-node" style="margin: 4px 0;">
+                            <div class="node-dot"></div>
+                            <span style="font-weight:600; font-size:12px;">[${o.customer}] ${o.origin} ➔ ${o.destination}</span>
+                        </div>
+                        ${oIdx < r.orders.length - 1 ? '<div class="node-line"></div>' : ''}
+                    `).join('');
+
+                    return `
+                        <div class="route-card">
+                            <div class="route-header">
+                                <div class="route-title">
+                                    <span class="material-symbols-outlined" style="color:var(--secondary);">alt_route</span>
+                                    <span style="font-size:13px; font-weight:700;">추천 통합 노선 ${r.id}</span>
+                                </div>
+                                <span class="badge badge-transit" style="font-size:9px; padding: 2px 6px;">Consolidated</span>
+                            </div>
+                            <div class="route-body">
+                                <div style="display:flex; justify-content:space-between; margin-bottom: 8px; font-size:12px;">
+                                    <span><strong>배정 차량:</strong> ${r.vehicle}</span>
+                                    <span style="color:var(--text-secondary);">기사: ${r.driver}</span>
+                                </div>
+                                <div style="background-color:#F8FAFC; padding: 10px; border-radius: 8px; display:flex; flex-direction:column; gap:2px; border:1px solid #e2e8f0;">
+                                    ${nodeMarkup}
+                                </div>
+                            </div>
+                            <button class="btn-primary" onclick="applySmartRoute(${idx})" style="padding: 10px; font-size:12px; border-radius:8px; margin-top:8px; width:100%; height:auto;">
+                                추천 배차 적용
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        /* ----------------------------------------------------
+           ORDER ACTION FUNCTIONS
+           ---------------------------------------------------- */
+        function advanceStatus(orderId, newStatus) {
+            const order = ordersData.find(o => o.id === orderId);
+            if (!order) return;
+
+            order.status = newStatus;
+            
+            // If advanced to 'planned' but no vehicle, auto-assign mock vehicle
+            if (newStatus === 'planned' && order.vehicle === '-') {
+                const localCodes = ['경기80아', '서울70사', '전남85바', '경남90자', '인천31러'];
+                const randCode = localCodes[Math.floor(Math.random() * localCodes.length)];
+                const randNum = Math.floor(1000 + Math.random() * 9000);
+                order.vehicle = `${randCode}${randNum}`;
+            }
+
+            showToast(`오더 [${orderId}] 상태가 '${statusMap[newStatus].text}'(으)로 변경되었습니다.`, 'success');
+            syncAllData();
+            filterOrders(); // Re-apply filter if active
+        }
+
+        function deleteOrder(orderId) {
+            if (!confirm(`오더 [${orderId}]를 정말 삭제(취소)하시겠습니까?`)) return;
+            
+            ordersData = ordersData.filter(o => o.id !== orderId);
+            showToast(`오더 [${orderId}]가 삭제되었습니다.`, 'success');
+            syncAllData();
+            filterOrders(); // Re-apply filter if active
+        }
+
+        /* ----------------------------------------------------
+           MODAL CONTROL FUNCTIONS
+           ---------------------------------------------------- */
+        function openOrderModal() {
+            // Set default date to current local date/time + 2 hours
+            const now = new Date();
+            now.setHours(now.getHours() + 2);
+            now.setMinutes(0);
+            
+            // Convert to Local ISO string (YYYY-MM-DDTHH:mm)
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            document.getElementById('modalDate').value = `${year}-${month}-${day}T${hours}:${minutes}`;
+            document.getElementById('orderModal').classList.add('show');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('show');
+            document.getElementById('orderForm').reset();
+        }
+
+        function registerOrder() {
+            const customer = document.getElementById('modalCustomer').value;
+            const origin = document.getElementById('modalOrigin').value.trim();
+            const destination = document.getElementById('modalDestination').value.trim();
+            const date = document.getElementById('modalDate').value;
+            const inputVehicle = document.getElementById('modalVehicle').value.trim();
+
+            // Auto Generate Order ID based on current date
+            const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+            const serial = String(ordersData.length + 1).padStart(3, '0');
+            const id = `ORD-${todayStr}-${serial}`;
+
+            const newOrder = {
+                id,
+                customer,
+                origin,
+                destination,
+                status: inputVehicle ? 'planned' : 'received',
+                vehicle: inputVehicle || '-',
+                date
+            };
+
+            ordersData.push(newOrder);
+            showToast(`신규 오더 ${id} 등록이 완료되었습니다.`, 'success');
+            
+            closeOrderModal();
+            syncAllData();
+            
+            // Reset filters to show new order
+            document.getElementById('orderSearchInput').value = '';
+            document.getElementById('statusFilter').value = 'all';
+            filterOrders();
+        }
+
+        // On document load, setup dynamic rendering
+        window.addEventListener('DOMContentLoaded', () => {
+            // If already logged in (for dev/sim restart scenario)
+            if (document.body.classList.contains('dashboard-mode')) {
+                syncAllData();
+            }
+        });
     </script>
 </body>
 </html>
